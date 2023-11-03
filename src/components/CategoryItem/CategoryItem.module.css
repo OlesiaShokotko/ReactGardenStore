@@ -1,0 +1,22 @@
+.category_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.category_img{
+    width: 320px;
+    height: 300px;
+}
+
+.category_link{
+    text-decoration: none;
+}
+
+.category_title{
+    color: black;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}

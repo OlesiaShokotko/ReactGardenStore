@@ -1,0 +1,53 @@
+.order_details {
+  width: 500px;
+  height: 400px;
+  padding: 25px;
+  border: 2px solid black;
+  border-radius: 21px;
+}
+
+.total_price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 0 55px;
+}
+
+.order_title {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 36.4px;
+}
+
+.sum_title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 31.2px;
+}
+
+.order_price {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 41.6px;
+}
+
+.order_price > span {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 13px;
+}
+
+.price {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0.03em;
+  text-decoration-line: line-through;
+  color: #8b8b8b;
+}
+
+.error_message {
+  margin-left: 25px;
+  font-weight: 600;
+}

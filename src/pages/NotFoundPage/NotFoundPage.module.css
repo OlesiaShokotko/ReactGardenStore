@@ -1,0 +1,26 @@
+.container{
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.container > p{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.button_container > button{
+    width: 125px;
+    height: 49px;
+    background-color: #339933;
+    color: white;
+    border-radius: 7px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+

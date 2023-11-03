@@ -1,0 +1,12 @@
+.button_elem{
+    width: 450px;
+    height: 70px;
+    background-color: #339933;
+    border-radius: 20px;
+    padding: 20px 150px;
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36.4px;
+    margin-top: 25px;
+}
