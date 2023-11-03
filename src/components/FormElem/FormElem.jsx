@@ -23,6 +23,7 @@ export default function FormElem({
     reset,
   } = useForm({ mode: "onChange" });
 
+
 const cartProducts = shoppingCartList.reduce((result, item) => {
   const matchingItem = shoppingCart.find((elem) => elem.id === item.id);
   if (matchingItem) {
@@ -65,7 +66,18 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
     reset();
   };
 
-  
+  // const btnStyle = {
+  //   width: "450px",
+  //   height: "70px",
+  //   backgroundColor: "#339933",
+  //   borderRadius: "20px",
+  //   padding: "20px 150px",
+  //   color: "white",
+  //   fontSize: "28px",
+  //   fontWeight: "700",
+  //   lineHeight: "36.4px",
+  //   marginTop: "25px",
+  // };
 
   
 
@@ -97,7 +109,10 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
         </div>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
+        <input
+          type="number"
+          placeholder={placeholder}
+          className={s.input_elem}
           {...register("phoneNumber", {
             required: "The field must not be empty",
             pattern: {
@@ -105,12 +120,11 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
               message: "Please enter a valid international phone number",
             },
           })}
-          placeholder={placeholder}
         />
         {errors.phoneNumber && (
           <p className={s.error_message}>{errors.phoneNumber.message}</p>
         )}
-        <Button title={btnTitle} />
+        <button className={s.form_btn}>{btnTitle}</button>
       </form>
     </div>
   );

@@ -5,12 +5,15 @@ import s from "./ShoppingCartPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function ShoppingCartPage() {
+
+  
+
   const { products, shoppingCart, discount } = useSelector((store) => store);
 
   const navigate = useNavigate();
 
   const shoppingCartList = shoppingCart?.map((item) => {
-    const product = products.find(({ id }) => id === item.id);
+    const product = products.data.find(({ id }) => id === item.id);
     return product;
   });
  
@@ -19,7 +22,7 @@ export default function ShoppingCartPage() {
   return (
     <div className={s.container}>
       <h2 className={s.shopping_cart_title}>Shopping cart</h2>
-      {products.length === 0 ? (
+      {products.data.length === 0 ? (
         <p>Loading...</p>
       ) : (
         <>

@@ -1,55 +1,46 @@
 import { useDispatch } from "react-redux";
 import s from "./ProductsFilterBar.module.css";
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
   applyPriceFilterAction,
   sortedProductsFilterAction,
 } from "../../store/reducer/productsReducer";
 import { useLocation } from "react-router-dom";
-import CustomCheckbox from "react-custom-checkbox";
-import Checkbox from "react-custom-checkbox";
+
 
 export default function ProductsFilterBar({
   handleDiscountCheckboxChange,
   displayDiscountCheckbox,
-//   handlePriceFilter,
-//   minPrice,
-//   maxPrice,
-}) 
-{
+  formHandler,
+  formRef
+}) {
   const dispatch = useDispatch();
 
   const location = useLocation();
 
-  // useEffect(() => {
-  //     const filterValues = {
-  //         minPrice: Number(minPrice),
-  //         maxPrice: Number(maxPrice),
-  //     };
-  //     dispatch(applyPriceFilterAction(filterValues))
-  // }, [minPrice, maxPrice])
 
   return (
     <div className={s.container}>
       {location.pathname === "/products/sale" ? (
         <>
-          <form className={s.price_wrapper}>
+          <form
+            ref={formRef}
+            onChange={formHandler}
+            className={s.price_wrapper}
+          >
             <h3>Price</h3>
             <input
+              className={s.input}
               type="number"
               inputMode="none"
-              name="minPrice"
+              name="min"
               placeholder="from"
-            //   value={minPrice}
-            //   onChange={(e) => handlePriceFilter(e)}
             />
             <input
+              className={s.input}
               type="number"
               inputMode="none"
-              name="maxPrice"
+              name="max"
               placeholder="to"
-            //   value={maxPrice}
-            //   onChange={(e) => handlePriceFilter(e)}
             />
           </form>
           <div className={s.sort_wrapper}>
@@ -71,23 +62,21 @@ export default function ProductsFilterBar({
         </>
       ) : (
         <>
-          <form className={s.price_wrapper}>
+          <form onChange={formHandler} ref={formRef} className={s.price_wrapper}>
             <h3>Price</h3>
             <input
+              className={s.input}
               type="number"
               inputMode="none"
-              name="minPrice"
+              name="min"
               placeholder="from"
-            //   value={minPrice}
-            //   onChange={handlePriceFilter}
             />
             <input
+              className={s.input}
               type="number"
               inputMode="none"
-              name="maxPrice"
+              name="max"
               placeholder="to"
-            //   value={maxPrice}
-            //   onChange={handlePriceFilter}
             />
           </form>
           <div className={s.discount_wrapper}>

@@ -32,20 +32,19 @@ export const productsReducer = (state = initialState, action) => {
       };
 
     case APPLY_PRICE_FILTER:
-      const { minPrice, maxPrice } = action.payload;
-      const filteredProducts = state.data.map((product) => {
-        const productPrice = finalPrice(product);
-        return {
-          ...product,
-          filtered:
-            productPrice < parseFloat(minPrice) &&
-            productPrice > parseFloat(maxPrice),
-        };
-      });
-      return {
-        ...state,
-        data: filteredProducts,
-      };
+    const { min, max } = action.payload;
+    const filteredProducts = state.data.map((product) => {
+      const productPrice = finalPrice(product);
+       if(productPrice > min || productPrice < max){
+        return product
+       }
+       
+    });
+    console.log(filteredProducts)
+    return {
+      ...state,
+      data: filteredProducts,
+    };
 
     case APPLY_DISCOUNT_FILTER:
       const newProductList = state.data.map((item) => ({
@@ -75,10 +74,7 @@ export const productsReducer = (state = initialState, action) => {
         );
       } else if (action.payload === "discount, high to low") {
         sortedProducts.sort((crElem, nxElem) => {
-          if (
-            crElem.discount_price != null &&
-            nxElem.discount_price != null
-          ) {
+          if (crElem.discount_price != null && nxElem.discount_price != null) {
             return discountCalculation(nxElem) - discountCalculation(crElem);
           }
         });

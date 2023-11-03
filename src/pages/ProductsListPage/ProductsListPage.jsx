@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import s from "./ProductsListPage.module.css";
 import ProductItem from '../../components/ProductItem/ProductItem';
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { fetchProductsList } from '../../asyncActions/products';
 import { useParams, useLocation } from 'react-router-dom';
 import ProductsFilterBar from '../../components/ProductsFilterBar/ProductsFilterBar';
@@ -11,30 +11,14 @@ import { applyDiscountFilterAction, applyPriceFilterAction, resetFilterAction } 
 export default function ProductsListPage() {
 
     const [displayDiscountCheckbox, setDisplayDiscountCheckbox] = useState(false)
-    // const [minPrice, setMinPrice] = useState("");
-    // const [maxPrice, setMaxPrice] = useState("");
-
+  
 
     const { id } = useParams()
 
     const location = useLocation()
     const dispatch = useDispatch()
+    const formRef = useRef();
 
-    // const handlePriceFilter = useCallback(
-    //   (e) => {
-
-    //     const { name, value } = e.target;
-
-    //     if (name === "minPrice") {
-    //       setMinPrice(value);
-    //     } else if (name === "maxPrice") {
-    //       setMaxPrice(value);
-    //     }
-    //     dispatch(applyPriceFilterAction({ minPrice, maxPrice }));
-    //   },
-    //   [dispatch, minPrice, maxPrice]
-    // );
-    
 
     const categories = useSelector((store) => store.categories);
 
@@ -48,6 +32,14 @@ export default function ProductsListPage() {
         }
     });
 
+
+    function formHandler(e) {
+      let form_data = new FormData(formRef.current);
+      let data = Object.fromEntries(form_data);
+      data.min = data.min ? +data.min : 0;
+      data.max = data.max ? +data.max : Infinity;
+      dispatch(applyPriceFilterAction(data));
+    }
     
 
     const handleDiscountCheckboxChange = (checked) => {
@@ -71,7 +63,7 @@ export default function ProductsListPage() {
     return (
       <>
         {isLoading ? (
-          <p>Loading...</p>
+          <p className={s.loader}>Loading...</p>
         ) : (
           <>
             {location.pathname === "/products/sale" ? (
@@ -80,9 +72,8 @@ export default function ProductsListPage() {
                 <ProductsFilterBar
                   handleDiscountCheckboxChange={handleDiscountCheckboxChange}
                   displayDiscountCheckbox={displayDiscountCheckbox}
-                //   handlePriceFilter={handlePriceFilter}
-                //   minPrice={minPrice}
-                //   maxPrice={maxPrice}
+                  formHandler={formHandler}
+                  formRef={formRef}
                 />
                 <div className={s.product_wrapper}>
                   {productsList
@@ -100,9 +91,8 @@ export default function ProductsListPage() {
                 <ProductsFilterBar
                   handleDiscountCheckboxChange={handleDiscountCheckboxChange}
                   displayDiscountCheckbox={displayDiscountCheckbox}
-                //   handlePriceFilter={handlePriceFilter}
-                //   minPrice={minPrice}
-                //   maxPrice={maxPrice}
+                  formHandler={formHandler}
+                  formRef={formRef}
                 />
                 <div className={s.product_wrapper}>
                   {productsList

@@ -1,11 +1,10 @@
 import s from "./Button.module.css";
 
 function Button(props) {
-  const { title, style, ...otherProps } = props;
-  console.log(title)
+  const { title, ...otherProps } = props;
 
   return (
-    <button {...otherProps} style={style} className={s.button_elem}>
+    <button {...otherProps}>
       {title}
     </button>
   );
