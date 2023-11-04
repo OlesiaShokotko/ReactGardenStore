@@ -56,7 +56,7 @@ export default function ProductDescriptionPage() {
             </button>
             <p style={{ color: "#C0C0C0" }}>
               - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-              - - - - - - - -{" "}
+              - - - - - - - -
             </p>
             <p className={s.descr_title}>Description</p>
             <p className={s.product_descr}>{description}</p>

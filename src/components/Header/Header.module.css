@@ -20,8 +20,7 @@
 }
 
 .header_button{
-    width: 125px;
-    height: 49px;
+    padding: 15px 30px;
     background-color: #339933;
     color: white;
     border-radius: 7px;

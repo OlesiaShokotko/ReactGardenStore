@@ -1,5 +1,6 @@
 const initialState = {
   data: [],
+  initialData: [],
   isLoading: false,
 };
 
@@ -26,43 +27,64 @@ export const productsReducer = (state = initialState, action) => {
         isLoading: action.payload,
       };
     case ADD_NEW_PRODUCTS_LIST:
+      const productsList = action.payload.map((product) => ({
+        ...product,
+        isShowBySale: true,
+        isShowByPrice: true,
+      }));
       return {
         ...state,
-        data: action.payload,
+        data: productsList,
+        initialData: productsList
       };
 
     case APPLY_PRICE_FILTER:
-    const { min, max } = action.payload;
-    const filteredProducts = state.data.map((product) => {
-      const productPrice = finalPrice(product);
-       if(productPrice > min || productPrice < max){
-        return product
-       }
-       
-    });
-    console.log(filteredProducts)
-    return {
-      ...state,
-      data: filteredProducts,
-    };
-
-    case APPLY_DISCOUNT_FILTER:
-      const newProductList = state.data.map((item) => ({
-        ...item,
-        show: item.discount_price !== null,
-      }));
-
+      const { min, max } = action.payload;
+      const filteredProducts = state.data.map((product) => {
+        product.isShowByPrice = true;
+        if (product.price < min || product.price > max) {
+          product.isShowByPrice = false;
+        }
+        return product;
+      });
       return {
         ...state,
-        data: newProductList,
+        data: filteredProducts,
+      };
+
+    case APPLY_DISCOUNT_FILTER:
+      console.log(action.payload)
+      if(action.payload) {
+        return {
+          ...state,
+          data: state.data.map((el) => {
+            if (el.discount_price === null) {
+              el.isShowBySale = false;
+            }
+            return el;
+          })
+        }
+      } else {
+       return {
+         ...state,
+         data: state.data.map((el) => {
+           el.isShowBySale = true;
+           return el;
+         })
+       }; 
       };
 
     case SORTED_PRODUCTS_FILTER:
       const sortedProducts = [...state.data];
-      if (action.payload === "price, low to high") {
+      if (action.payload === "by default") {
+        return {
+          ...state,
+          data: state.initialData,
+        };
+      } else if (action.payload === "price, low to high") {
         sortedProducts.sort(
           (crElem, nxElem) => finalPrice(crElem) - finalPrice(nxElem)
-        );
+        ); 
       } else if (action.payload === "price, high to low") {
         sortedProducts.sort(
           (crElem, nxElem) => finalPrice(nxElem) - finalPrice(crElem)
@@ -97,7 +119,10 @@ export const productsReducer = (state = initialState, action) => {
       };
 
     case RESET_FILTER:
-      return state;
+      return {
+        ...state,
+        data: state.initialData
+      };
 
     default:
       return state;
@@ -116,11 +141,12 @@ export const applyPriceFilterAction = (filterValues) => ({
   type: APPLY_PRICE_FILTER,
   payload: filterValues,
 });
-export const applyDiscountFilterAction = () => ({
+export const applyDiscountFilterAction = (payload) => ({
   type: APPLY_DISCOUNT_FILTER,
+  payload
 });
-export const resetFilterAction = () => ({ type: RESET_FILTER });
 export const sortedProductsFilterAction = (payload) => ({
   type: SORTED_PRODUCTS_FILTER,
   payload,
 });
+export const resetFilterAction = () => ({ type: RESET_FILTER });

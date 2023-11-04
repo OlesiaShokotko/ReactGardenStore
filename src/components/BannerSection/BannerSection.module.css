@@ -34,8 +34,6 @@
 }
 
 .sale_btn {
-  width: 155px;
-  height: 82px;
   border-radius: 13px;
   padding: 25px 50px;
   background-color: white;
@@ -49,15 +47,13 @@
 }
 
 .more_btn {
-  width: 230px;
-  height: 82px;
   border-radius: 13px;
   border: 2px solid white;
-  padding: 25px 30px;
+  padding: 25px 40px;
   background-color: transparent;
   font-size: 25px;
   font-weight: 700;
-  line-height: 25px;
+  line-height: 32.5px;
   color: white;
   text-align: center;
   cursor: pointer;

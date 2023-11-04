@@ -8,6 +8,7 @@
 .category_img{
     width: 320px;
     height: 330px;
+    object-fit: cover;
 }
 
 .category_link{

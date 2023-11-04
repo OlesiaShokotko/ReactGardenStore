@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import s from "./CategoryItem.module.css";
 import { LINK } from "../../store/link/link";
 
+
 export default function CategoryItem({ id, title, image }) {
   const linkToImg = `${LINK}${image}`;
   const link = `/categories/${id}`;

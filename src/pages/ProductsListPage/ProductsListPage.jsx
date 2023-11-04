@@ -8,9 +8,10 @@ import ProductsFilterBar from '../../components/ProductsFilterBar/ProductsFilter
 import { applyDiscountFilterAction, applyPriceFilterAction, resetFilterAction } from '../../store/reducer/productsReducer';
 
 
+
 export default function ProductsListPage() {
 
-    const [displayDiscountCheckbox, setDisplayDiscountCheckbox] = useState(false)
+    // const [displayDiscountCheckbox, setDisplayDiscountCheckbox] = useState(false)
   
 
     const { id } = useParams()
@@ -24,32 +25,47 @@ export default function ProductsListPage() {
 
     const isLoading = useSelector((store) => store.products.isLoading)
 
-    const productsList = useSelector(store => {
-        if (id === undefined) {
-            return store.products.data;
-        } else {
-            return store.products.data.filter(product => product.categoryId === +id)
-        }
-    });
+    // const productsList = useSelector(store => {
+    //     if (id === undefined) {
+    //         return store.products.data.filter(
+    //           (elem) => elem.sShowByPrice && elem.isShowBySale
+    //         );
+    //     } else {
+    //         return store.products.data
+    //           .filter((product) => product.categoryId === +id)
+    //           .filter((elem) => elem.isShowByPrice && elem.isShowBySale);
+    //     }
+    // });
+
+     const productsList = useSelector((store) => store.products.data).filter(
+       (elem) => elem.isShowByPrice && elem.isShowBySale);
+
+    console.log(productsList)
+
+    function checkboxHandler(e) {
+      console.log(e.target.checked)
+      dispatch(applyDiscountFilterAction(e.target.checked));
+    }
 
 
     function formHandler(e) {
       let form_data = new FormData(formRef.current);
       let data = Object.fromEntries(form_data);
-      data.min = data.min ? +data.min : 0;
+      data.min = data.min ? +data.min : -Infinity;
       data.max = data.max ? +data.max : Infinity;
       dispatch(applyPriceFilterAction(data));
+      
     }
     
 
-    const handleDiscountCheckboxChange = (checked) => {
-        setDisplayDiscountCheckbox(checked);
-        if(checked){
-            dispatch(applyDiscountFilterAction())
-        } else {
-            dispatch(resetFilterAction())
-        }
-    }
+    // const handleDiscountCheckboxChange = (checked) => {
+    //     setDisplayDiscountCheckbox(checked);
+    //     if(checked){
+    //         dispatch(applyDiscountFilterAction())
+    //     } else {
+    //         dispatch(resetFilterAction())
+    //     }
+    // }
 
 
     const category = categories.find(elem => elem.id === +id)
@@ -70,8 +86,9 @@ export default function ProductsListPage() {
               <div className={s.container}>
                 <h2 className={s.products_title}>Products with sale</h2>
                 <ProductsFilterBar
-                  handleDiscountCheckboxChange={handleDiscountCheckboxChange}
-                  displayDiscountCheckbox={displayDiscountCheckbox}
+                  checkboxHandler={checkboxHandler}
+                  // handleDiscountCheckboxChange={handleDiscountCheckboxChange}
+                  // displayDiscountCheckbox={displayDiscountCheckbox}
                   formHandler={formHandler}
                   formRef={formRef}
                 />
@@ -89,17 +106,18 @@ export default function ProductsListPage() {
                   {category === undefined ? "All products" : category.title}
                 </h2>
                 <ProductsFilterBar
-                  handleDiscountCheckboxChange={handleDiscountCheckboxChange}
-                  displayDiscountCheckbox={displayDiscountCheckbox}
+                  checkboxHandler={checkboxHandler}
+                  // handleDiscountCheckboxChange={handleDiscountCheckboxChange}
+                  // displayDiscountCheckbox={displayDiscountCheckbox}
                   formHandler={formHandler}
                   formRef={formRef}
                 />
                 <div className={s.product_wrapper}>
                   {productsList
-                    .filter(
-                      (product) =>
-                        !displayDiscountCheckbox || product.discount_price
-                    )
+                    // .filter(
+                    //   (product) =>
+                    //     !displayDiscountCheckbox || product.discount_price
+                    // )
                     .map((product) => (
                       <ProductItem key={product.id} {...product} />
                     ))}

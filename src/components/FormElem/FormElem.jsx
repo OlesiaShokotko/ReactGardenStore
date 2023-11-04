@@ -5,7 +5,6 @@ import s from "./FormElem.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { clearShoppingCartAction } from "../../store/reducer/shoppingCartReducer";
 import { sendOrder } from "../../asyncActions/order";
-import { parsePhoneNumberFromString } from "libphonenumber-js";
 
 export default function FormElem({
   btnTitle,
@@ -39,7 +38,6 @@ const cartProducts = shoppingCartList.reduce((result, item) => {
 
 
 
-
 const totalProductsPrice = cartProducts.reduce(
   (sum, elem) =>
     sum +
@@ -53,7 +51,6 @@ const totalProductsPrice = cartProducts.reduce(
 const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
 
 
-  console.log(cartProducts)
 
   const onSubmit = () => {
     const order = cartProducts.map((elem) => ({
@@ -65,20 +62,6 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
     dispatch(clearShoppingCartAction());
     reset();
   };
-
-  // const btnStyle = {
-  //   width: "450px",
-  //   height: "70px",
-  //   backgroundColor: "#339933",
-  //   borderRadius: "20px",
-  //   padding: "20px 150px",
-  //   color: "white",
-  //   fontSize: "28px",
-  //   fontWeight: "700",
-  //   lineHeight: "36.4px",
-  //   marginTop: "25px",
-  // };
-
   
 
   return (
@@ -110,7 +93,7 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          type="number"
+          type="text"
           placeholder={placeholder}
           className={s.input_elem}
           {...register("phoneNumber", {
