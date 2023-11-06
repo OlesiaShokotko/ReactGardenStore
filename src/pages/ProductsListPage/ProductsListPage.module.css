@@ -1,6 +1,7 @@
 .container {
     max-width: 1380px;
     margin: 0 auto;
+    padding-bottom: 80px;
 }
 
 .product_wrapper {

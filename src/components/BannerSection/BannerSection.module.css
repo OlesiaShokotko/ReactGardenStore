@@ -33,28 +33,4 @@
   align-items: center;
 }
 
-.sale_btn {
-  border-radius: 13px;
-  padding: 25px 50px;
-  background-color: white;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 32.5px;
-  color: black;
-  border: none;
-  margin-right: 20px;
-  cursor: pointer;
-}
 
-.more_btn {
-  border-radius: 13px;
-  border: 2px solid white;
-  padding: 25px 40px;
-  background-color: transparent;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 32.5px;
-  color: white;
-  text-align: center;
-  cursor: pointer;
-}

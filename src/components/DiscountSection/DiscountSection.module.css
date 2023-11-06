@@ -1,0 +1,47 @@
+.container {
+  width: 100%;
+  background-image: url("../../../public/discount_banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.wrapper {
+  display: flex;
+  gap: 240px;
+  padding: 30px 260px 30px 90px;
+}
+
+.image_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image_container > img {
+  padding-left: 30px;
+  width: 420px;
+  height: 420px;
+  display: block;
+}
+
+.first_title {
+  font-size: 90px;
+  font-weight: 700;
+  line-height: 108px;
+  color: white;
+}
+
+.second_title {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 60px;
+  color: white;
+  margin-bottom: 45px;
+}
+
+.error_message {
+  margin: 10px 0 0 25px;
+  font-weight: 600;
+}
+
+

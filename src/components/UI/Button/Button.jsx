@@ -1,10 +1,10 @@
 import s from "./Button.module.css";
 
 function Button(props) {
-  const { title, ...otherProps } = props;
+  const { title, styleBtn, ...otherProps } = props;
 
   return (
-    <button {...otherProps}>
+    <button {...otherProps} className={s[styleBtn]}>
       {title}
     </button>
   );

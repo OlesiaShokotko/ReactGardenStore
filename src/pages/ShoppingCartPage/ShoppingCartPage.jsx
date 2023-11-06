@@ -3,10 +3,10 @@ import ShoppingCartItem from "../../components/ShoppingCartItem/ShoppingCartItem
 import FormElem from "../../components/FormElem/FormElem";
 import s from "./ShoppingCartPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { ReactComponent as GoBackIcon } from "../../components/icons/go_back_icon.svg";
+
 
 export default function ShoppingCartPage() {
-
-  
 
   const { products, shoppingCart, discount } = useSelector((store) => store);
 
@@ -29,7 +29,7 @@ export default function ShoppingCartPage() {
           <div className={s.wrapper}>
             <div className={s.back_wrapper} onClick={() => navigate(-1)}>
               <p>Back to the store</p>
-              <img src="icon_go_back.svg" />
+              <GoBackIcon/>
             </div>
           </div>
           <div className={s.stripe_wrapper}>

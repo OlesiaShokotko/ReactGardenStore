@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 import s from "./FormElem.module.css";
@@ -13,7 +13,7 @@ export default function FormElem({
   discount,
 }) {
   const dispatch = useDispatch();
-  const { shoppingCart } = useSelector((store) => store);
+  const shoppingCart = useSelector((store) => store.shoppingCart);
 
   const {
     register,
@@ -91,24 +91,25 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
           </p>
         </div>
       )}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder={placeholder}
-          className={s.input_elem}
-          {...register("phoneNumber", {
-            required: "The field must not be empty",
-            pattern: {
-              value: /^\+49\s\d{2,5}\s\d{6,12}$/,
-              message: "Please enter a valid international phone number",
-            },
-          })}
-        />
-        {errors.phoneNumber && (
-          <p className={s.error_message}>{errors.phoneNumber.message}</p>
-        )}
-        <button className={s.form_btn}>{btnTitle}</button>
-      </form>
+      <FormProvider>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            className={"cart_input"}
+            placeholder={placeholder}
+            {...register("phoneNumber", {
+              required: "The field must not be empty",
+              pattern: {
+                value: /^\+49\s\d{2,5}\s\d{6,12}$/,
+                message: "Please enter a valid international phone number",
+              },
+            })}
+          />
+          {errors.phoneNumber && (
+            <p className={s.error_message}>{errors.phoneNumber.message}</p>
+          )}
+          <Button title={btnTitle} styleBtn={"cart_btn"} />
+        </form>
+      </FormProvider>
     </div>
   );
 }

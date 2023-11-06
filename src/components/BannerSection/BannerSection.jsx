@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import s from "./BannerSection.module.css";
+import Button from "../UI/Button/Button";
 
 export default function BannerSection() {
 
@@ -14,15 +15,12 @@ export default function BannerSection() {
           <p className={s.season}>New season</p>
         </div>
         <div className={s.btn_wrapper}>
-          <button className={s.sale_btn} onClick={() => ({})}>
-            Sale
-          </button>
-          <button
-            className={s.more_btn}
+          <Button title={"Sale"} onClick={() => ({})} styleBtn={"sale_btn"} />
+          <Button
+            title={"Learn more"}
             onClick={() => navigate("/products/sale")}
-          >
-            Learn more
-          </button>
+            styleBtn={"more_btn"}
+          />
         </div>
       </div>
     </div>

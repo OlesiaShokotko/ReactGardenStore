@@ -1,4 +1,7 @@
 import s from "./Footer.module.css";
+import { ReactComponent as InstagramIcon } from "../icons/instagram_icon.svg";
+import { ReactComponent as WhatsappIcon } from "../icons/whatsapp_icon.svg";
+import Iframe from "../Iframe/Iframe";
 
 export default function Footer() {
   return (
@@ -18,13 +21,13 @@ export default function Footer() {
               href="https://instagram.com/alesyaaaaaa_888?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr"
             >
               <span className={s.icon_wrapper}>
-                <img src="instagram_icon.svg" alt="Instagram link" />
+                <InstagramIcon />
                 <p>Instagram</p>
               </span>
             </a>
             <a href="https://wa.me/4915143215184">
               <span className={s.icon_wrapper}>
-                <img src="whatsapp_icon.svg" alt="WhatsApp link" />
+                <WhatsappIcon />
                 <p>WhatsApp</p>
               </span>
             </a>
@@ -34,26 +37,20 @@ export default function Footer() {
           <h2 className={s.footer_title}>Address</h2>
           <a
             href="https://www.google.com/search?q=telranDE"
-            style={{ fontSize: "40px", fontWeight: "600", color: "black" }}
+            className={s.address_link}
           >
             Linkstraße 2, 8 OG, 10785,
             <br /> Berlin, Deutschland
           </a>
-          <p style={{ fontSize: "18px", fontWeight: "500", marginTop: "30px" }}>
+          <p className={s.work_time_title}>
             Working Hours:
             <br />
-            <span style={{ fontSize: "24px", fontWeight: "600" }}>
-              24 hours a day
-            </span>
+            <span>24 hours a day</span>
           </p>
         </div>
       </div>
-      <div style={{ width: "100%", margin: "50px 0 40px" }}>
-        <iframe
-          width="100%"
-          height="525"
-          src="https://maps.google.com/maps?width=100%25&amp;height=525&amp;hl=en&amp;q=Tel-Ran,%20Berlin+(My%20Business%20Name)&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-        ></iframe>
+      <div className={s.iframe}>
+        <Iframe/>
       </div>
     </div>
   );

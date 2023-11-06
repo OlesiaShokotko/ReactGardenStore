@@ -1,43 +1,64 @@
-.container{
-    max-width: 1380px;
-    margin: 100px auto 40px;
+.container {
+  max-width: 1380px;
+  margin: 50px auto;
 }
 
-.content_wrapper{
-    display: flex;
-    justify-content: space-between;
+.content_wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
-.footer_title{
-    font-size: 40px;
-    font-weight: 700;
-    margin-bottom: 30px;
+.footer_title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 30px;
 }
 
-.contact{
-    font-size: 70px;
-    font-weight: 700;
-    margin-bottom: 30px;
-    color: black;
+.address_link {
+  font-size: 40px;
+  font-weight: 600;
+  color: black;
 }
 
-.footer_icons{
-    display: flex;
+.work_time_title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+.work_time_title > span {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.contact {
+  font-size: 70px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.footer_icons {
+  display: flex;
 }
 
 .footer_icons > a {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
-.icon_wrapper{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.icon_wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .icon_wrapper > img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.iframe {
+  margin: 50px 0 40px;
 }

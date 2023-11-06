@@ -2,7 +2,8 @@ import { forwardRef } from "react";
 import s from "./Input.module.css";
 
 const Input = forwardRef((props, ref) => {
-  return <input type='text' ref={ref} {...props} className={s.input_elem} />;
+  const {className} = props
+  return <input type="text" ref={ref} {...props} className={s[className]}/>;
 });
 
 export default Input;

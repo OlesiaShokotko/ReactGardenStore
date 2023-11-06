@@ -1,12 +1,13 @@
 .container {
     max-width: 1380px;
     margin: 0 auto;
-    padding: 80px 0 80px;
+    padding: 60px 0;
 }
 
 .product_image {
     width: 700px;
     height: 700px;
+    object-fit: contain;
     border-radius: 15px;
 }
 
@@ -22,6 +23,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    /* gap: 130px; */
 }
 
 .info_wrapper {
