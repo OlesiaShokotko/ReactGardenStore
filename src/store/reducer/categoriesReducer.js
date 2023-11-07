@@ -16,16 +16,19 @@ export const categoriesReducer = (state = initialState, action) => {
         ...state,
         isLoading: action.payload,
       };
+
     case FETCH_CATEGORIES_SUCCESS:
       return {
         ...state,
         data: action.payload,
       };
+
     case FETCH_CATEGORIES_FAILURE:
       return{
         ...state,
         error: action.payload
       }
+      
     default:
       return state;
   }

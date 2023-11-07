@@ -32,6 +32,7 @@ export const productsListReducer = (state = initialState, action) => {
         ...state,
         isLoading: action.payload,
       };
+
     case FETCH_PRODUCTS_SUCCESS:
       const productsList = action.payload.map((product) => ({
         ...product,
@@ -142,6 +143,7 @@ export const productsListReducer = (state = initialState, action) => {
           if (crElem.title === nxElem.title) return 0;
         });
       }
+      
       return {
         ...state,
         data: sortedProducts,
