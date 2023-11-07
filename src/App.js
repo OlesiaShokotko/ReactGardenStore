@@ -8,7 +8,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchProductsListAction } from './asyncActions/products';
+import { fetchProductsListAction } from './asyncActions/productsList';
 import { fetchAllCategoriesAction } from './asyncActions/categories';
 import ProductDescriptionPage from './pages/ProductDescriptionPage/ProductDescriptionPage';
 import ShoppingCartPage from './pages/ShoppingCartPage/ShoppingCartPage';
