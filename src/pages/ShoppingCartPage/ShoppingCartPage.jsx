@@ -2,12 +2,11 @@ import { useSelector } from "react-redux";
 import ShoppingCartItem from "../../components/ShoppingCartItem/ShoppingCartItem";
 import FormElem from "../../components/FormElem/FormElem";
 import s from "./ShoppingCartPage.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as GoBackIcon } from "../../components/icons/go_back_icon.svg";
-
+import { useEffect } from "react";
 
 export default function ShoppingCartPage() {
-
   const { products, shoppingCart, discount } = useSelector((store) => store);
 
   const navigate = useNavigate();
@@ -16,8 +15,10 @@ export default function ShoppingCartPage() {
     const product = products.data.find(({ id }) => id === item.id);
     return product;
   });
- 
 
+  useEffect(() =>{
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <div className={s.container}>
@@ -29,7 +30,7 @@ export default function ShoppingCartPage() {
           <div className={s.wrapper}>
             <div className={s.back_wrapper} onClick={() => navigate(-1)}>
               <p>Back to the store</p>
-              <GoBackIcon/>
+              <GoBackIcon />
             </div>
           </div>
           <div className={s.stripe_wrapper}>

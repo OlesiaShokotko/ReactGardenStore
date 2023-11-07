@@ -1,14 +1,12 @@
-import { useSelector } from 'react-redux';
-import CategoryItem from '../CategoryItem/CategoryItem';
-import s from './CategoriesSection.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useSelector } from "react-redux";
+import CategoryItem from "../CategoryItem/CategoryItem";
+import s from "./CategoriesSection.module.css";
+import { useNavigate } from "react-router-dom";
 import Button from "../UI/Button/Button";
 
 export default function CategoriesSection() {
-
-  const categories = useSelector((state) => state.categories);
-  const navigate = useNavigate()
-
+  const { data } = useSelector((state) => state.categories);
+  const navigate = useNavigate();
 
   return (
     <div className={s.container}>
@@ -21,7 +19,7 @@ export default function CategoriesSection() {
         />
       </div>
       <div className={s.categories_wrapper}>
-        {categories
+        {data
           .filter((elem) => elem.id < 5)
           .map((elem) => (
             <CategoryItem key={elem.id} {...elem} />
@@ -30,5 +28,3 @@ export default function CategoriesSection() {
     </div>
   );
 }
-
-

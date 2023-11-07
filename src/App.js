@@ -8,8 +8,8 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchProductsList } from './asyncActions/products';
-import { fetchAllCategories } from './asyncActions/categories';
+import { fetchProductsList, fetchProductsListAction } from './asyncActions/products';
+import { fetchAllCategories, fetchAllCategoriesAction } from './asyncActions/categories';
 import ProductDescriptionPage from './pages/ProductDescriptionPage/ProductDescriptionPage';
 import ShoppingCartPage from './pages/ShoppingCartPage/ShoppingCartPage';
 import CategoriesList from './pages/CategoriesPage/CategoriesPage';
@@ -19,9 +19,10 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchProductsList())
-    dispatch(fetchAllCategories())
+    dispatch(fetchProductsListAction())
+    dispatch(fetchAllCategoriesAction())
   }, [])
+
 
   return (
     <div>

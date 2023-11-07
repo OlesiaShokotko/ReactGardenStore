@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import { categoriesReducer } from './reducer/categoriesReducer';
-import { productsReducer } from './reducer/productsReducer';
+import { productsListReducer } from './reducer/productsListReducer';
 import { shoppingCartReducer } from './reducer/shoppingCartReducer';
 import { discountReducer } from './reducer/discountReducer';
 import { productReducer } from './reducer/productReducer';
@@ -10,7 +10,7 @@ import { productReducer } from './reducer/productReducer';
 
 export const rootReducer = combineReducers({
   categories: categoriesReducer,
-  products: productsReducer,
+  products: productsListReducer,
   shoppingCart: shoppingCartReducer,
   discount: discountReducer,
   product: productReducer

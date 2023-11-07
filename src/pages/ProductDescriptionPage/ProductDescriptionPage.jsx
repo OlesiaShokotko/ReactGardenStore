@@ -17,6 +17,7 @@ export default function ProductDescriptionPage() {
 
     useEffect(() => {
       dispatch(addProductItemAction(id))
+      window.scrollTo(0, 0);
     }, [])
 
 

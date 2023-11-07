@@ -1,15 +1,19 @@
 import { LINK } from "../store/link/link"
-import { addNewCategoriesListAction } from "../store/reducer/categoriesReducer"
+import { addNewCategoriesListAction, fetchCategoriesFailureAction, fetchCategoriesRequestAction, fetchCategoriesSuccessAction, loadingCategoriesListAction } from "../store/reducer/categoriesReducer"
 
 const URL = `${LINK}/categories/all`
 
-export const fetchAllCategories = () => {
+export const fetchAllCategoriesAction = () => {
     return function (dispatch) {
+        dispatch(fetchCategoriesRequestAction(true))
         fetch(URL)
             .then(res => res.json())
-            .then(data => dispatch(addNewCategoriesListAction(data)))
+            .then(data => {
+                dispatch(fetchCategoriesSuccessAction(data))
+                dispatch(fetchCategoriesRequestAction(false))
+            })
             .catch((error) => {
-                console.error('Произошла ошибка при получении данных:', error);
+                fetchCategoriesFailureAction(error)
             });
     }
 }

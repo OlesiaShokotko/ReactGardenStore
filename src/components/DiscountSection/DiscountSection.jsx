@@ -2,8 +2,13 @@ import { useForm, FormProvider } from "react-hook-form";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 import s from "./DiscountSection.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getDiscountAction } from "../../asyncActions/discount";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function DiscountSection() {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -11,7 +16,8 @@ export default function DiscountSection() {
     reset,
   } = useForm({ mode: "onChange" });
 
-  const onSubmit = () => {
+  const onSubmit = (data) => {
+    dispatch(getDiscountAction(data));
     reset();
   };
 
@@ -32,7 +38,7 @@ export default function DiscountSection() {
                 {...register("phoneNumber", {
                   required: "The field must not be empty",
                   pattern: {
-                    value: /^\+49\s\d{2,5}\s\d{6,12}$/,
+                    value: /^\+49\d{10,12}$/,
                     message: "Please enter a valid international phone number",
                   },
                 })}

@@ -4,6 +4,11 @@
     padding-bottom: 110px;
 }
 
+.loader{
+    text-align: center;
+    font-size: 20px;
+}
+
 .categories_title{
     margin-bottom: 80px;
     font-size: 40px;

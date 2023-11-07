@@ -5,6 +5,7 @@ export default function NotFoundPage(){
 
     const navigate = useNavigate()
 
+
     return(
         <div className={s.container}>
             <h2>Error 404</h2>

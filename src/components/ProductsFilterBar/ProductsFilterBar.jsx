@@ -1,17 +1,10 @@
 import { useDispatch } from "react-redux";
 import s from "./ProductsFilterBar.module.css";
-import {
-  applyDiscountFilterAction,
-  applyPriceFilterAction,
-  resetFilterAction,
-  sortedProductsFilterAction,
-} from "../../store/reducer/productsReducer";
+import { sortedProductsFilterAction } from "../../store/reducer/productsListReducer";
 import { useLocation } from "react-router-dom";
 
 
 export default function ProductsFilterBar({
-  // handleDiscountCheckboxChange,
-  // displayDiscountCheckbox,
   formHandler,
   formRef,
   checkboxHandler,
@@ -64,7 +57,6 @@ export default function ProductsFilterBar({
             </select>
           </div>
         </>
-        // onClick={() => dispatch(resetFilterAction())}
       ) : (
         <>
           <form
@@ -95,10 +87,6 @@ export default function ProductsFilterBar({
               className={s.input_checkbox}
               type="checkbox"
               onClick={checkboxHandler}
-              // checked={displayDiscountCheckbox}
-              // onChange={() =>
-              //   handleDiscountCheckboxChange(!displayDiscountCheckbox)
-              // }
             />
             <label
               htmlFor="myCheckbox"

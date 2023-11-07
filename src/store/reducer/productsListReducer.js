@@ -2,10 +2,12 @@ const initialState = {
   data: [],
   initialData: [],
   isLoading: false,
+  error: null,
 };
 
-const LOADING_PRODUCTS_LIST = "LOADING_PRODUCTS_LIST";
-const ADD_NEW_PRODUCTS_LIST = "ADD_NEW_PRODUCTS_LIST";
+const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
+const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
+const FETCH_PRODUCTS_FAILURE = "FETCH_PRODUCTS_FAILURE";
 const APPLY_PRICE_FILTER = "APPLY_PRICE_FILTER";
 const APPLY_DISCOUNT_FILTER = "APPLY_DISCOUNT_FILTER";
 const RESET_FILTER = "RESET_FILTER";
@@ -16,26 +18,38 @@ const finalPrice = (elem) => {
 };
 
 const discountCalculation = (elem) => {
-  return (((elem.price - elem.discount_price) / elem.price) * 100).toFixed(0);
+  if (elem.discount_price) {
+    return (((elem.price - elem.discount_price) / elem.price) * 100).toFixed(0);
+  } else {
+    return null;
+  }
 };
 
-export const productsReducer = (state = initialState, action) => {
+export const productsListReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOADING_PRODUCTS_LIST:
+    case FETCH_PRODUCTS_REQUEST:
       return {
         ...state,
         isLoading: action.payload,
       };
-    case ADD_NEW_PRODUCTS_LIST:
+    case FETCH_PRODUCTS_SUCCESS:
       const productsList = action.payload.map((product) => ({
         ...product,
         isShowBySale: true,
         isShowByPrice: true,
+        discount: discountCalculation(product),
       }));
+
       return {
         ...state,
         data: productsList,
-        initialData: productsList
+        initialData: productsList,
+      };
+
+    case FETCH_PRODUCTS_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
       };
 
     case APPLY_PRICE_FILTER:
@@ -47,14 +61,14 @@ export const productsReducer = (state = initialState, action) => {
         }
         return product;
       });
+
       return {
         ...state,
         data: filteredProducts,
       };
 
     case APPLY_DISCOUNT_FILTER:
-      console.log(action.payload)
-      if(action.payload) {
+      if (action.payload) {
         return {
           ...state,
           data: state.data.map((el) => {
@@ -62,17 +76,17 @@ export const productsReducer = (state = initialState, action) => {
               el.isShowBySale = false;
             }
             return el;
-          })
-        }
+          }),
+        };
       } else {
-       return {
-         ...state,
-         data: state.data.map((el) => {
-           el.isShowBySale = true;
-           return el;
-         })
-       }; 
-      };
+        return {
+          ...state,
+          data: state.data.map((el) => {
+            el.isShowBySale = true;
+            return el;
+          }),
+        };
+      }
 
     case SORTED_PRODUCTS_FILTER:
       const sortedProducts = [...state.data];
@@ -84,21 +98,36 @@ export const productsReducer = (state = initialState, action) => {
       } else if (action.payload === "price, low to high") {
         sortedProducts.sort(
           (crElem, nxElem) => finalPrice(crElem) - finalPrice(nxElem)
-        ); 
+        );
       } else if (action.payload === "price, high to low") {
         sortedProducts.sort(
           (crElem, nxElem) => finalPrice(nxElem) - finalPrice(crElem)
         );
       } else if (action.payload === "discount, low to high") {
-        sortedProducts.sort(
-          (crElem, nxElem) =>
-            discountCalculation(crElem) - discountCalculation(nxElem)
-        );
+        sortedProducts.sort((crElem, nxElem) => {
+          if (crElem.discount === null && nxElem.discount === null) {
+            return 0;
+          }
+          if (crElem.discount === null) {
+            return 1;
+          }
+          if (nxElem.discount === null) {
+            return -1;
+          }
+          return crElem.discount - nxElem.discount;
+        });
       } else if (action.payload === "discount, high to low") {
         sortedProducts.sort((crElem, nxElem) => {
-          if (crElem.discount_price != null && nxElem.discount_price != null) {
-            return discountCalculation(nxElem) - discountCalculation(crElem);
+          if (crElem.discount === null && nxElem.discount === null) {
+            return 0;
           }
+          if (crElem.discount === null) {
+            return 1;
+          }
+          if (nxElem.discount === null) {
+            return -1;
+          }
+          return nxElem.discount - crElem.discount;
         });
       } else if (action.payload === "alphabetically, A-Z") {
         sortedProducts.sort((crElem, nxElem) => {
@@ -121,7 +150,7 @@ export const productsReducer = (state = initialState, action) => {
     case RESET_FILTER:
       return {
         ...state,
-        data: state.initialData
+        data: state.initialData,
       };
 
     default:
@@ -129,12 +158,16 @@ export const productsReducer = (state = initialState, action) => {
   }
 };
 
-export const loadingProductsList = (payload) => ({
-  type: LOADING_PRODUCTS_LIST,
+export const fetchProductsRequestAction = (payload) => ({
+  type: FETCH_PRODUCTS_REQUEST,
   payload,
 });
-export const addNewProductsListAction = (payload) => ({
-  type: ADD_NEW_PRODUCTS_LIST,
+export const fetchProductsSuccessAction = (payload) => ({
+  type: FETCH_PRODUCTS_SUCCESS,
+  payload,
+});
+export const fetchProductsFailureAction = (payload) => ({
+  type: FETCH_PRODUCTS_FAILURE,
   payload,
 });
 export const applyPriceFilterAction = (filterValues) => ({
@@ -143,7 +176,7 @@ export const applyPriceFilterAction = (filterValues) => ({
 });
 export const applyDiscountFilterAction = (payload) => ({
   type: APPLY_DISCOUNT_FILTER,
-  payload
+  payload,
 });
 export const sortedProductsFilterAction = (payload) => ({
   type: SORTED_PRODUCTS_FILTER,

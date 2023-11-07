@@ -2,10 +2,8 @@ import { useNavigate } from "react-router-dom";
 import s from "./BannerSection.module.css";
 import Button from "../UI/Button/Button";
 
-export default function BannerSection() {
-
+export default function BannerSection({ scrollToSaleSection }) {
   const navigate = useNavigate();
-
 
   return (
     <div className={s.container}>
@@ -15,7 +13,11 @@ export default function BannerSection() {
           <p className={s.season}>New season</p>
         </div>
         <div className={s.btn_wrapper}>
-          <Button title={"Sale"} onClick={() => ({})} styleBtn={"sale_btn"} />
+          <Button
+            title={"Sale"}
+            onClick={scrollToSaleSection}
+            styleBtn={"sale_btn"}
+          />
           <Button
             title={"Learn more"}
             onClick={() => navigate("/products/sale")}

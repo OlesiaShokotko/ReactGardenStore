@@ -5,7 +5,7 @@ import { LINK } from "../store/link/link";
 
 const URL = `${LINK}/order/send`;
 
-export const sendOrder = (order) => {
+export const sendOrderAction = (order) => {
   return function (dispatch) {
     fetch(URL, {
       method: "POST",

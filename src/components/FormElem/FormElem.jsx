@@ -4,7 +4,7 @@ import Button from "../UI/Button/Button";
 import s from "./FormElem.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { clearShoppingCartAction } from "../../store/reducer/shoppingCartReducer";
-import { sendOrder } from "../../asyncActions/order";
+import { sendOrderAction } from "../../asyncActions/order";
 
 export default function FormElem({
   btnTitle,
@@ -12,6 +12,7 @@ export default function FormElem({
   shoppingCartList,
   discount,
 }) {
+  
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart);
 
@@ -22,35 +23,30 @@ export default function FormElem({
     reset,
   } = useForm({ mode: "onChange" });
 
+  const cartProducts = shoppingCartList.reduce((result, item) => {
+    const matchingItem = shoppingCart.find((elem) => elem.id === item.id);
+    if (matchingItem) {
+      result.push({
+        id: item.id,
+        price: item.price,
+        discount_price: item.discount_price,
+        count: matchingItem.count,
+      });
+    }
+    return result;
+  }, []);
 
-const cartProducts = shoppingCartList.reduce((result, item) => {
-  const matchingItem = shoppingCart.find((elem) => elem.id === item.id);
-  if (matchingItem) {
-    result.push({
-      id: item.id,
-      price: item.price,
-      discount_price: item.discount_price,
-      count: matchingItem.count,
-    });
-  }
-  return result;
-}, []);
+  const totalProductsPrice = cartProducts.reduce(
+    (sum, elem) =>
+      sum +
+      (parseFloat(elem.discount_price)
+        ? parseFloat(elem.discount_price)
+        : parseFloat(elem.price)) *
+        elem.count,
+    0
+  );
 
-
-
-const totalProductsPrice = cartProducts.reduce(
-  (sum, elem) =>
-    sum +
-    (parseFloat(elem.discount_price)
-      ? parseFloat(elem.discount_price)
-      : parseFloat(elem.price)) *
-      elem.count,
-  0
-);
-
-const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
-
-
+  const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
 
   const onSubmit = () => {
     const order = cartProducts.map((elem) => ({
@@ -58,11 +54,10 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
       count: elem.count.toString(),
       price: elem.price,
     }));
-    dispatch(sendOrder(order));
+    dispatch(sendOrderAction(order));
     dispatch(clearShoppingCartAction());
     reset();
   };
-  
 
   return (
     <div className={s.order_details}>
@@ -80,7 +75,9 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
               <span>$</span>
             </p>
           </div>
-          <p>The 5% discount has been applied!</p>
+          <p className={s.discount_success}>
+            The 5% discount has been applied!
+          </p>
         </>
       ) : (
         <div className={s.total_price}>
@@ -99,7 +96,7 @@ const discountPrice = (totalProductsPrice * 0.95).toFixed(2);
             {...register("phoneNumber", {
               required: "The field must not be empty",
               pattern: {
-                value: /^\+49\s\d{2,5}\s\d{6,12}$/,
+                value: /^\+49\d{10,12}$/,
                 message: "Please enter a valid international phone number",
               },
             })}

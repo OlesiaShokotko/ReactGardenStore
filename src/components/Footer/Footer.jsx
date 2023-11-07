@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={s.iframe}>
-        <Iframe/>
+        <Iframe />
       </div>
     </div>
   );

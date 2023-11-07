@@ -23,7 +23,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* gap: 130px; */
 }
 
 .info_wrapper {

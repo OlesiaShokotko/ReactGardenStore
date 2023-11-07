@@ -1,16 +1,22 @@
 .order_details {
   width: 500px;
-  height: 400px;
+  height: 430px;
   padding: 25px;
   border: 2px solid black;
   border-radius: 21px;
+}
+
+.discount_success {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .total_price {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 50px 0 55px;
+  margin: 50px 0 50px;
 }
 
 .order_title {
@@ -50,7 +56,5 @@
 .error_message {
   margin-left: 25px;
   font-weight: 600;
+  font-size: 16px;
 }
-
-
-

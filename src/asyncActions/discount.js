@@ -1,4 +1,5 @@
-
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { LINK } from "../store/link/link";
 import {
   sendFailureAction,
@@ -8,10 +9,10 @@ import {
 
 const URL = `${LINK}/sale/send`;
 
-export const getDiscount = (phoneNumber) => {
+export const getDiscountAction = (phoneNumber) => {
   return function (dispatch) {
     dispatch(sendRequestAction());
-    fetch(URL, {
+    return fetch(URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,12 +21,12 @@ export const getDiscount = (phoneNumber) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        if (result.data.isClientRegistered === false) {
+        console.log(result);
+        if (result.clientRegistered === false) {
           dispatch(sendSuccessAction());
+          toast("Discount received!");
         } else {
-          dispatch(
-            sendFailureAction("This phone number is already registered.")
-          );
+          toast("Discount has already been used!");
         }
       })
       .catch((error) => {

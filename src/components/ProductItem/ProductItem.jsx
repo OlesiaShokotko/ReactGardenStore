@@ -5,7 +5,7 @@ import s from './ProductItem.module.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addToCartAction } from '../../store/reducer/shoppingCartReducer';
-import Button from '../UI/Button/Button';
+
 
 export default function ProductItem({ id, image, price, discount_price, title }) {
 
