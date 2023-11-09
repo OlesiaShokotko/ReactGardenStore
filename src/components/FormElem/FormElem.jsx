@@ -16,6 +16,9 @@ export default function FormElem({
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart);
 
+  
+  console.log(discount)
+
   const {
     register,
     handleSubmit,

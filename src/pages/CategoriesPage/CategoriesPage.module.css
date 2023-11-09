@@ -1,7 +1,7 @@
 .container{
-    max-width: 1380px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding-bottom: 110px;
+    padding: 0 30px 50px;
 }
 
 .loader{

@@ -1,6 +1,7 @@
 .container {
-  max-width: 1380px;
-  margin: 30px auto;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 30px 0;
   display: flex;
   justify-content: space-between;
 }
@@ -82,4 +83,33 @@
   font-size: 40px;
   background-color: white;
   color: black;
+}
+
+.filter_icon {
+  display: none;
+}
+
+@media screen and (max-width: 1080px) {
+  .sort_wrapper > h3,
+  .price_wrapper > h3,
+  .discount_wrapper > h3 {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0.03em;
+  }
+  .sort_wrapper,
+  .discount_wrapper {
+    gap: 15px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    display: none;
+  }
+
+  .filter_icon {
+    display: block;
+  }
 }

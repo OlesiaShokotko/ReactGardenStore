@@ -1,16 +1,36 @@
 import { Link, useLocation } from "react-router-dom";
 import s from "./Header.module.css";
 import { useSelector } from "react-redux";
-import { BiMenu } from "react-icons/bi";
+import { MdClear, MdMenu } from "react-icons/md";
 import { ReactComponent as CartIcon } from "../../components/icons/cart_icon.svg";
 import { ReactComponent as MainLogo } from "../../components/icons/main_logo.svg";
 import Button from "../UI/Button/Button";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
 
 export default function Header() {
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
   const shoppingCart = useSelector((store) => store.shoppingCart);
+
   const count = shoppingCart?.reduce((sum, item) => sum + item.count, 0);
+
   const location = useLocation();
+
+  const menuRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsBurgerMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const menu = [
     { id: 1, title: "Main Page", link: "/" },
@@ -18,62 +38,64 @@ export default function Header() {
     { id: 3, title: "All sales", link: "/products/sale" },
   ];
 
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-
-  const toggleBurgerMenu = () => {
+  const handleBurgerMenuClick = (event) => {
+    event.stopPropagation();
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
   };
 
   return (
     <div className={s.container}>
-      <div className={s.main}>
-        <Link to={"/"}>
-          <MainLogo />
-        </Link>
-        <Link to={"/categories"}>
-          <Button title={"Catalog"} styleBtn={"header_button"} />
-        </Link>
-      </div>
-      <div className={s.menu}>
-        <ul className={s.menu_wrapper}>
-          {menu.map((elem) => (
-            <Link
-              className={
-                location.pathname === elem.link
-                  ? `${s.menu_item} ${s.elem_green}`
-                  : `${s.menu_item}`
-              }
-              to={elem.link}
-              key={elem.id}
+      <div className={s.wrapper}>
+        <div className={s.left_wrapper}>
+          <Link to={"/"}>
+            <MainLogo className={s.logo} />
+          </Link>
+          <Link to={"/categories"}>
+            <Button title={"Catalog"} styleBtn={"header_button"} />
+          </Link>
+        </div>
+        <div className={s.right_wrapper}>
+          <nav
+            className={`${s.header_nav} ${isBurgerMenuOpen ? s.active : ""}`}
+            ref={menuRef}
+          >
+            <div
+              className={s.close_icon_mobile}
+              onClick={handleBurgerMenuClick}
             >
-              <li>{elem.title}</li>
+              <MdClear size={40} color="#000" />
+            </div>
+            <ul className={s.header_nav_list}>
+              {menu.map((elem) => (
+                <Link
+                  className={
+                    location.pathname === elem.link
+                      ? `${s.header_nav_item} ${s.elem_green}`
+                      : `${s.header_nav_item}`
+                  }
+                  to={elem.link}
+                  key={elem.id}
+                  onClick={() => setIsBurgerMenuOpen(false)}
+                >
+                  <li>{elem.title}</li>
+                </Link>
+              ))}
+            </ul>
+          </nav>
+
+          <div className={s.cart}>
+            <Link className={s.link_style} to={"/cart"}>
+              <div className={s.cart_icon_container}>
+                <CartIcon />
+                <span className={s.cart_count}>{count}</span>
+              </div>
             </Link>
-          ))}
-        </ul>
-        <Link className={s.link_style} to={"/cart"}>
-          <div className={s.cart_icon_container}>
-            <CartIcon />
-            <span className={s.cart_count}>{count}</span>
           </div>
-        </Link>
-        <div className={s.burger_menu} onClick={toggleBurgerMenu}>
-          <BiMenu size={24} color="#000" />
+        </div>
+        <div className={s.burger_menu} onClick={handleBurgerMenuClick}>
+          <MdMenu size={40} color="#000" />
         </div>
       </div>
-      {isBurgerMenuOpen && (
-        <ul className={s.burger_menu_wrapper}>
-          {menu.map((elem) => (
-            <Link
-              className={s.burger_menu_item}
-              to={elem.link}
-              key={elem.id}
-              onClick={toggleBurgerMenu}
-            >
-              <li>{elem.title}</li>
-            </Link>
-          ))}
-        </ul>
-      )}
     </div>
   );
 }

@@ -31,7 +31,7 @@ export default function DiscountSection() {
           <h2 className={s.first_title}>5% off</h2>
           <h3 className={s.second_title}>on the first order</h3>
           <FormProvider>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className={s.discount_form}>
               <Input
                 className={"discount_input"}
                 placeholder={"+49"}

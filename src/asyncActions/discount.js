@@ -21,7 +21,7 @@ export const getDiscountAction = (phoneNumber) => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        
         if (result.clientRegistered === false) {
           dispatch(sendSuccessAction());
           toast("Discount received!");

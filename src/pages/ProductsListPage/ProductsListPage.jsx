@@ -49,12 +49,14 @@ export default function ProductsListPage() {
         <>
           {location.pathname === "/products/sale" ? (
             <div className={s.container}>
-              <h2 className={s.products_title}>Products with sale</h2>
-              <ProductsFilterBar
-                checkboxHandler={checkboxHandler}
-                formHandler={formHandler}
-                formRef={formRef}
-              />
+              <div className={s.filter_wrapper}>
+                <h2 className={s.products_title}>Products with sale</h2>
+                <ProductsFilterBar
+                  checkboxHandler={checkboxHandler}
+                  formHandler={formHandler}
+                  formRef={formRef}
+                />
+              </div>
               <div className={s.products_wrapper}>
                 {productsList
                   .filter((product) => product.discount_price)
@@ -65,14 +67,16 @@ export default function ProductsListPage() {
             </div>
           ) : (
             <div className={s.container}>
-              <h2 className={s.products_title}>
-                {category === undefined ? "All products" : category.title}
-              </h2>
-              <ProductsFilterBar
-                checkboxHandler={checkboxHandler}
-                formHandler={formHandler}
-                formRef={formRef}
-              />
+              <div className={s.filter_wrapper}>
+                <h2 className={s.products_title}>
+                  {category === undefined ? "All products" : category.title}
+                </h2>
+                <ProductsFilterBar
+                  checkboxHandler={checkboxHandler}
+                  formHandler={formHandler}
+                  formRef={formRef}
+                />
+              </div>
               <div className={s.products_wrapper}>
                 {productsList.map((product) => (
                   <ProductItem key={product.id} {...product} />

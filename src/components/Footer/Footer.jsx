@@ -7,14 +7,16 @@ export default function Footer() {
   return (
     <div className={s.container}>
       <div className={s.content_wrapper}>
-        <div style={{ marginRight: "162px" }}>
-          <h2 className={s.footer_title}>Contact</h2>
-          <a
-            href="https://www.google.com/search?q=telrande+contact"
-            style={{ textDecoration: "none" }}
-          >
-            <p className={s.contact}>+49 999 999 99 99</p>
-          </a>
+        <div className={s.left_wrapper}>
+        
+            <h2 className={s.footer_title}>Contact</h2>
+            <a
+              href="https://www.google.com/search?q=telrande+contact"
+              style={{ textDecoration: "none" }}
+            >
+              <p className={s.contact}>+49 999 999 99 99</p>
+            </a>
+          
           <div className={s.footer_icons}>
             <a
               style={{ marginRight: "35px" }}
@@ -33,7 +35,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div>
+        <div className={s.right_wrapper}>
           <h2 className={s.footer_title}>Address</h2>
           <a
             href="https://www.google.com/search?q=telranDE"
