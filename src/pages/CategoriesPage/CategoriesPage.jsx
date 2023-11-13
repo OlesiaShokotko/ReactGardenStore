@@ -15,14 +15,14 @@ export default function CategoriesPage() {
       {isLoading ? (
         <p className={s.loader}>Loading...</p>
       ) : (
-        <div className={s.container}>
+        <main className={s.container}>
           <h2 className={s.categories_title}>Categories</h2>
           <div className={s.categories_wrapper}>
             {data.map((elem) => (
               <CategoryItem key={elem.id} {...elem} />
             ))}
           </div>
-        </div>
+        </main>
       )}
     </>
   );

@@ -50,7 +50,7 @@ export default function ProductsListPage() {
       ) : (
         <>
           {location.pathname === "/products/sale" ? (
-            <div className={s.container}>
+            <main className={s.container}>
               <div className={s.filter_wrapper}>
                 <h2 className={s.products_title}>Products with sale</h2>
                 <ProductsFilterBar
@@ -66,9 +66,9 @@ export default function ProductsListPage() {
                     <ProductItem key={product.id} {...product} />
                   ))}
               </div>
-            </div>
+            </main>
           ) : (
-            <div className={s.container}>
+            <main className={s.container}>
               <div className={s.filter_wrapper}>
                 <h2 className={s.products_title}>
                   {category === undefined ? "All products" : category.title}
@@ -84,7 +84,7 @@ export default function ProductsListPage() {
                   <ProductItem key={product.id} {...product} />
                 ))}
               </div>
-            </div>
+            </main>
           )}
         </>
       )}

@@ -30,7 +30,7 @@ export default function ProductDescriptionPage() {
       {isLoading ? (
         <p className={s.loader}>Loading...</p>
       ) : (
-        <div className={s.container}>
+        <main className={s.container}>
           <h2 className={s.product_title}>{title}</h2>
           <div className={s.content_wrapper}>
             <img className={s.product_image} src={linkToImg} alt={title} />
@@ -63,12 +63,12 @@ export default function ProductDescriptionPage() {
                 title={" To cart"}
               />
               <div className={s.descr_container}>
-                <p className={s.descr_title}>Description</p>
+                <h3 className={s.descr_title}>Description</h3>
                 <p className={s.product_descr}>{description}</p>
               </div>
             </div>
           </div>
-        </div>
+        </main>
       )}
     </>
   );

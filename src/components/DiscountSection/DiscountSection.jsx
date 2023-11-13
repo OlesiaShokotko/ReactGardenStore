@@ -2,7 +2,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 import s from "./DiscountSection.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getDiscountAction } from "../../asyncActions/discount";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -22,7 +22,7 @@ export default function DiscountSection() {
   };
 
   return (
-    <div className={s.container}>
+    <section className={s.container}>
       <div className={s.wrapper}>
         <div className={s.image_container}>
           <img src="discount_img.png" alt="Discount image" />
@@ -51,6 +51,6 @@ export default function DiscountSection() {
           </FormProvider>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -8,10 +8,11 @@ export default function CategoryItem({ id, title, image }) {
 
   return (
     <Link className={s.category_link} to={link}>
-      <div className={s.category_item}>
+      <article className={s.category_item}>
         <img className={s.category_img} src={linkToImg} />
         <p className={s.category_title}>{title}</p>
-      </div>
+      </article>
     </Link>
   );
 }
+

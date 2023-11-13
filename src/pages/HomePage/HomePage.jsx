@@ -20,11 +20,11 @@ export default function HomePage(){
 
 
     return(
-        <div>
+        <main>
             <Banner scrollToSaleSection={scrollToSaleSection}/>
             <CategoriesSection/>
             <DiscountSection/>
             <SaleSection ref={saleSectionRef}/>
-        </div>
+        </main>
     )
 }

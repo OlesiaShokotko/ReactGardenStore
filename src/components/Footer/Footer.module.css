@@ -32,6 +32,8 @@
   font-size: 40px;
   font-weight: 600;
   color: black;
+  line-height: 52px;
+  font-style: normal; 
 }
 
 .work_time_title {
@@ -47,6 +49,7 @@
 .contact {
   font-size: 70px;
   font-weight: 700;
+  line-height: 91px;
   color: black;
 }
 
@@ -89,12 +92,14 @@
   .address_link,
   .contact {
     font-size: 20px;
+    line-height: 26px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .footer_title {
     font-size: 20px;
+    line-height: 26px;
   }
 
   .icon {
@@ -127,6 +132,7 @@
   .contact,
   .address_link {
     font-size: 10px;
+    line-height: 16px;
   }
 
   .iframe {

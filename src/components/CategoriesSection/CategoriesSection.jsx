@@ -9,7 +9,7 @@ export default function CategoriesSection() {
   const navigate = useNavigate();
 
   return (
-    <div className={s.container}>
+    <section className={s.container}>
       <div className={s.content_wrapper}>
         <h2 className={s.title}>Catalog</h2>
         <Button
@@ -22,9 +22,9 @@ export default function CategoriesSection() {
         {data
           .filter((elem) => elem.id < 5)
           .map((elem) => (
-            <CategoryItem key={elem.id} {...elem} />
+              <CategoryItem key={elem.id} {...elem} />
           ))}
       </div>
-    </div>
+    </section>
   );
 }

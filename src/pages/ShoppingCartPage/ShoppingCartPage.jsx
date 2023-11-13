@@ -22,7 +22,7 @@ export default function ShoppingCartPage() {
   }, [])
 
   return (
-    <div className={s.container}>
+    <main className={s.container}>
       <h2 className={s.shopping_cart_title}>Shopping cart</h2>
       {products?.data.length === 0 ? (
         <p>Loading...</p>
@@ -32,7 +32,7 @@ export default function ShoppingCartPage() {
             <p>Your shopping cart is empty.</p>
           ) : (
             <div className={s.cart_container}>
-              <div className={s.products_wrapper}>
+              <section className={s.products_wrapper}>
                 <div className={s.navigate_wrapper}>
                   <div className={s.back_wrapper} onClick={() => navigate(-1)}>
                     <p>Back to the store</p>
@@ -40,24 +40,24 @@ export default function ShoppingCartPage() {
                   </div>
                 </div>
                 <div className={s.stripe_wrapper}>
-                  <img className={s.stripe} src="stripe.png" />
+                  <img className={s.stripe} src="stripe.png" alt="Stripe"/>
                 </div>
                 {shoppingCartList?.map((item) => (
                   <ShoppingCartItem key={item.id} {...item} />
                 ))}
-              </div>
-              <div>
+              </section>
+              <section>
                 <FormElem
                   discount={discount}
                   shoppingCartList={shoppingCartList}
                   btnTitle={"Order"}
                   placeholder={"Phone number"}
                 />
-              </div>
+              </section>
             </div>
           )}
         </>
       )}
-    </div>
+    </main>
   );
 }

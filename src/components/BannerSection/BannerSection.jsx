@@ -6,10 +6,10 @@ export default function BannerSection({ scrollToSaleSection }) {
   const navigate = useNavigate();
 
   return (
-    <div className={s.container}>
+    <section className={s.container}>
       <div className={s.wrapper}>
         <div className={s.descr_wrapper}>
-          <p className={s.sale}>Sale</p>
+          <h2 className={s.sale}>Sale</h2>
           <p className={s.season}>New season</p>
         </div>
         <div className={s.btn_wrapper}>
@@ -25,6 +25,6 @@ export default function BannerSection({ scrollToSaleSection }) {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

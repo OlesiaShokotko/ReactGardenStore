@@ -35,7 +35,7 @@ export default function Header() {
   };
 
   return (
-    <div className={s.container}>
+    <header className={s.container}>
       <div className={s.wrapper}>
         <div className={s.left_wrapper}>
           <Link to={"/"}>
@@ -73,7 +73,6 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-
           <div className={s.cart}>
             <Link className={s.link_style} to={"/cart"}>
               <div className={s.cart_icon_container}>
@@ -87,6 +86,6 @@ export default function Header() {
           <MdMenu size={40} color="#000" />
         </div>
       </div>
-    </div>
+    </header>
   );
 }

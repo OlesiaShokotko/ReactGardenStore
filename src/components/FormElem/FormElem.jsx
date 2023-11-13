@@ -12,7 +12,6 @@ export default function FormElem({
   shoppingCartList,
   discount,
 }) {
-  
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart);
 
@@ -60,7 +59,7 @@ export default function FormElem({
   };
 
   return (
-    <div className={s.order_details}>
+    <section className={s.order_details}>
       <h2 className={s.order_title}>Order details</h2>
       {discount.success ? (
         <>
@@ -109,6 +108,6 @@ export default function FormElem({
           <Button title={btnTitle} styleBtn={"cart_btn"} />
         </form>
       </FormProvider>
-    </div>
+    </section>
   );
 }

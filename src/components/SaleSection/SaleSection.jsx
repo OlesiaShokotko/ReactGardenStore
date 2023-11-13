@@ -10,14 +10,14 @@ const SaleSection = forwardRef((props, ref) => {
     ?.slice(0, 3);
 
   return (
-    <div className={s.container} ref={ref}>
+    <section className={s.container} ref={ref}>
       <h2 className={s.title}>Sale</h2>
       <div className={s.products_wrapper}>
         {listDiscountedProducts.map((elem) => (
           <ProductItem key={elem.id} {...elem} className={s.product_item} />
         ))}
       </div>
-    </div>
+    </section>
   );
 });
 
