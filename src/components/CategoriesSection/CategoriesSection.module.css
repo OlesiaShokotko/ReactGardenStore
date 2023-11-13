@@ -38,3 +38,14 @@
 
 }
 }
+
+@media screen and (max-width: 600px){
+.content_wrapper{
+  gap: 0;
+  justify-content: space-between;
+}
+
+.container{
+  padding: 50px 30px;
+}
+}

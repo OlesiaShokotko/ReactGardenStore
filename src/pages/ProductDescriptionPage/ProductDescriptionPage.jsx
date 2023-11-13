@@ -6,6 +6,7 @@ import { addToCartAction } from "../../store/reducer/shoppingCartReducer";
 import { useEffect } from "react";
 import { fetchProductItemAction } from "../../asyncActions/product";
 import { toast } from "react-toastify";
+import Button from "../../components/UI/Button/Button";
 
 export default function ProductDescriptionPage() {
   const { id } = useParams();
@@ -56,15 +57,15 @@ export default function ProductDescriptionPage() {
                   </p>
                 </div>
               )}
-              <button onClick={handleAddToCart} className={s.product_btn}>
-                To cart
-              </button>
-              <p style={{ color: "#C0C0C0" }}>
-                - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                - - - - - - - - -
-              </p>
-              <p className={s.descr_title}>Description</p>
-              <p className={s.product_descr}>{description}</p>
+              <Button
+                onClick={handleAddToCart}
+                styleBtn={"product_btn"}
+                title={" To cart"}
+              />
+              <div className={s.descr_container}>
+                <p className={s.descr_title}>Description</p>
+                <p className={s.product_descr}>{description}</p>
+              </div>
             </div>
           </div>
         </div>

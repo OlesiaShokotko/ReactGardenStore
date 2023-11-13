@@ -22,10 +22,11 @@ export default function ProductsListPage() {
   const formRef = useRef();
 
   const { data } = useSelector((store) => store.categories);
-  const { isLoading } = useSelector((store) => store.products.isLoading);
+  const { isLoading } = useSelector((store) => store.products);
   const productsList = useSelector((store) => store.products.data).filter(
     (elem) => elem.isShowByPrice && elem.isShowBySale
   );
+
 
   function checkboxHandler(e) {
     dispatch(applyDiscountFilterAction(e.target.checked));
@@ -40,6 +41,7 @@ export default function ProductsListPage() {
   }
 
   const category = data.find((elem) => elem.id === +id);
+  
 
   return (
     <>

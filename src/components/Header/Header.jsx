@@ -5,8 +5,8 @@ import { MdClear, MdMenu } from "react-icons/md";
 import { ReactComponent as CartIcon } from "../../components/icons/cart_icon.svg";
 import { ReactComponent as MainLogo } from "../../components/icons/main_logo.svg";
 import Button from "../UI/Button/Button";
-import { useEffect, useRef, useState } from "react";
-
+import { useRef, useState } from "react";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 export default function Header() {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
@@ -19,18 +19,9 @@ export default function Header() {
 
   const menuRef = useRef(null);
 
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      setIsBurgerMenuOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  useClickOutside(menuRef, () => {
+    setIsBurgerMenuOpen(false);
+  });
 
   const menu = [
     { id: 1, title: "Main Page", link: "/" },
@@ -63,7 +54,7 @@ export default function Header() {
               className={s.close_icon_mobile}
               onClick={handleBurgerMenuClick}
             >
-              <MdClear size={40} color="#000" />
+              <MdClear className={s.close_icon} color="#000" />
             </div>
             <ul className={s.header_nav_list}>
               {menu.map((elem) => (

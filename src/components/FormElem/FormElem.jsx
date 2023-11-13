@@ -16,9 +16,6 @@ export default function FormElem({
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart);
 
-  
-  console.log(discount)
-
   const {
     register,
     handleSubmit,
@@ -69,14 +66,16 @@ export default function FormElem({
         <>
           <div className={s.total_price}>
             <p className={s.sum_title}>Total</p>
-            <p className={s.order_price}>
-              {discountPrice}
-              <span>$</span>
-            </p>
-            <p className={s.price}>
-              {totalProductsPrice}
-              <span>$</span>
-            </p>
+            <div className={s.price_wrapper}>
+              <p className={s.order_price}>
+                {discountPrice}
+                <span>$</span>
+              </p>
+              <p className={s.price}>
+                {totalProductsPrice}
+                <span>$</span>
+              </p>
+            </div>
           </div>
           <p className={s.discount_success}>
             The 5% discount has been applied!
@@ -92,7 +91,7 @@ export default function FormElem({
         </div>
       )}
       <FormProvider>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={s.order_form}>
           <Input
             className={"cart_input"}
             placeholder={placeholder}

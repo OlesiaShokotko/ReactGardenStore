@@ -8,30 +8,29 @@ export default function Footer() {
     <div className={s.container}>
       <div className={s.content_wrapper}>
         <div className={s.left_wrapper}>
-        
-            <h2 className={s.footer_title}>Contact</h2>
-            <a
-              href="https://www.google.com/search?q=telrande+contact"
-              style={{ textDecoration: "none" }}
-            >
-              <p className={s.contact}>+49 999 999 99 99</p>
-            </a>
-          
+          <h2 className={s.footer_title}>Contact</h2>
+          <a
+            href="https://www.google.com/search?q=telrande+contact"
+            style={{ textDecoration: "none" }}
+          >
+            <p className={s.contact}>+49 999 999 99 99</p>
+          </a>
+
           <div className={s.footer_icons}>
             <a
-              style={{ marginRight: "35px" }}
+            className={s.icon_link}
               href="https://instagram.com/alesyaaaaaa_888?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr"
             >
-              <span className={s.icon_wrapper}>
-                <InstagramIcon />
+              <div className={s.icon_wrapper}>
+                <InstagramIcon className={s.icon} />
                 <p>Instagram</p>
-              </span>
+              </div>
             </a>
             <a href="https://wa.me/4915143215184">
-              <span className={s.icon_wrapper}>
-                <WhatsappIcon />
+              <div className={s.icon_wrapper}>
+                <WhatsappIcon className={s.icon} />
                 <p>WhatsApp</p>
-              </span>
+              </div>
             </a>
           </div>
         </div>

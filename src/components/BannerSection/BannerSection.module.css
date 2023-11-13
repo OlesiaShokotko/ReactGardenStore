@@ -2,10 +2,12 @@
   width: 100%;
   margin: 0 auto;
   background-image: url("/public/banner.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .wrapper {
-  /* max-width: 1380px; */
   padding: 0 50px;
   height: 600px;
   margin: 0 auto;
@@ -36,4 +38,25 @@
   align-items: center;
 }
 
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    height: 400px;
+  }
+}
 
+@media screen and (max-width: 600px) {
+  .wrapper {
+    height: 200px;
+    gap: 10px;
+  }
+
+  .sale {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .season {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}

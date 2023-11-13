@@ -49,3 +49,32 @@
     flex-direction: column;
   }
 }
+
+@media screen and (max-width: 800px){
+
+  .wrapper{
+    grid-template-columns: 1fr;
+  }
+
+  .first_title{
+    font-size: 35px;
+    line-height: 35px;
+  }
+  .second_title{
+    font-size: 40px;
+    line-height: 45px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .first_title{
+    font-size: 20px;
+    line-height: 22px;
+  }
+
+  .second_title{
+    font-size: 24px;
+    line-height: 26px;
+  }
+}

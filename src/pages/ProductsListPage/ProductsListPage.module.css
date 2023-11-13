@@ -37,12 +37,23 @@
 
 @media screen and (max-width: 900px) {
   .products_title {
-    margin: 0;
+    margin-bottom: 20px;
   }
   .filter_wrapper {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .products_title {
+    font-size: 25px;
+  }
+  .products_wrapper {
+    gap: 20px;
   }
 }

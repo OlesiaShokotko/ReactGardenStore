@@ -27,6 +27,7 @@
 }
 
 .product_btn {
+  display: block;
   opacity: 0;
   background-color: #f1fff1;
   color: #339933;
@@ -90,5 +91,62 @@
 @media screen and (max-width: 1020px) {
   .container {
     justify-self: center;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 35vw;
+    height: max-content;
+  }
+
+  .product_img {
+    width: 35vw;
+    height: fit-content;
+  }
+
+  .product_btn {
+    padding: 10px 30px;
+    top: 40%;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .title {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .discount_price {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .product_btn {
+    display: none;
+  }
+
+  .title {
+    font-size: 12px;
+    line-height: 14px;
+    margin: 0 10px;
+  }
+
+  .discount_price {
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 12px;
+  }
+
+  .discount {
+    font-size: 12px;
+  }
+
+  .price_container {
+    gap: 10px;
+    margin: 10px 10px;
   }
 }

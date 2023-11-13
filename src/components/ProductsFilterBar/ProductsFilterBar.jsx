@@ -2,8 +2,10 @@ import { useDispatch } from "react-redux";
 import s from "./ProductsFilterBar.module.css";
 import { sortedProductsFilterAction } from "../../store/reducer/productsListReducer";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { MdFilterList } from "react-icons/md";
+import Input from "../UI/Input/Input";
+import { useClickOutside } from "../../hooks/useClickOutside";
 
 export default function ProductsFilterBar({
   formHandler,
@@ -16,13 +18,26 @@ export default function ProductsFilterBar({
 
   const location = useLocation();
 
-  const handleClickFilterBar = () => {
+  const filterBarRef = useRef(null);
+
+  useClickOutside(filterBarRef, () => {
+    setIsFilterBarOpen(false);
+  });
+
+  const handleClickFilterBar = (event) => {
+    event.stopPropagation();
     setIsFilterBarOpen(!isFilterBarOpen);
   };
 
   return (
     <>
-      <div className={s.container}>
+      <div className={s.filter_icon} onClick={handleClickFilterBar}>
+        <MdFilterList size={40} color="#000" />
+      </div>
+      <div
+        className={`${s.container} ${isFilterBarOpen ? s.active : ""}`}
+        ref={filterBarRef}
+      >
         {location.pathname === "/products/sale" ? (
           <>
             <form
@@ -31,15 +46,15 @@ export default function ProductsFilterBar({
               className={s.price_wrapper}
             >
               <h3>Price</h3>
-              <input
-                className={s.input}
+              <Input
+                className={"filter_input"}
                 type="number"
                 inputMode="none"
                 name="min"
                 placeholder="from"
               />
-              <input
-                className={s.input}
+              <Input
+                className={"filter_input"}
                 type="number"
                 inputMode="none"
                 name="max"
@@ -71,15 +86,15 @@ export default function ProductsFilterBar({
               className={s.price_wrapper}
             >
               <h3>Price</h3>
-              <input
-                className={s.input}
+              <Input
+                className={"filter_input"}
                 type="number"
                 inputMode="none"
                 name="min"
                 placeholder="from"
               />
-              <input
-                className={s.input}
+              <Input
+                className={"filter_input"}
                 type="number"
                 inputMode="none"
                 name="max"
@@ -117,9 +132,6 @@ export default function ProductsFilterBar({
             </div>
           </>
         )}
-      </div>
-      <div className={s.filter_icon} onClick={handleClickFilterBar}>
-        <MdFilterList size={40} color="#000" />
       </div>
     </>
   );
