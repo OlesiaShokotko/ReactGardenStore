@@ -45,6 +45,10 @@
   justify-content: space-between;
 }
 
+.categories_wrapper{
+  grid-template-columns: 1fr;
+}
+
 .container{
   padding: 50px 30px;
 }
