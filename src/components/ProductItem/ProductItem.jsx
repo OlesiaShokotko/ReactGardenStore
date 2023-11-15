@@ -13,6 +13,7 @@ export default function ProductItem({
   discount_price,
   title,
 }) {
+
   const linkToImg = `${LINK}${image}`;
   const link = `/products/${id}`;
   const dispatch = useDispatch();
@@ -29,9 +30,9 @@ export default function ProductItem({
         Add to Cart
       </button>
       <Link style={{ textDecoration: "none" }} to={link}>
-        <figure className={s.product_img}>
+        <div className={s.product_img}>
           <img src={linkToImg} alt={title} />
-        </figure>
+        </div>
         {discount_price ? (
           <div className={s.price_container}>
             <p className={s.discount_price}>

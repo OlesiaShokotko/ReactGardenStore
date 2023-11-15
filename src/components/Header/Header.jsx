@@ -9,6 +9,7 @@ import { useRef, useState } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 
 export default function Header() {
+  
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const shoppingCart = useSelector((store) => store.shoppingCart);

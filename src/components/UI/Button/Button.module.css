@@ -157,3 +157,19 @@
     margin: 25px 0;
   }
 }
+
+@media screen and (max-width: 350px){
+  .more_btn{
+    padding: 10px 15px;
+    font-size: 12px;
+    line-height: 14px;
+    border-radius: 8px;
+  }
+
+  .sale_btn{
+    padding: 10px 15px;
+    font-size: 12px;
+    line-height: 14px;
+    border-radius: 8px;
+  }
+}

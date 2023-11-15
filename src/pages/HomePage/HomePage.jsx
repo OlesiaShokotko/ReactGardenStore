@@ -12,12 +12,11 @@ export default function HomePage(){
         window.scrollTo(0, 0);
     }, [])
 
-    const scrollToSaleSection = useCallback(() => {
-        if (saleSectionRef.current) {
-          saleSectionRef.current.scrollIntoView({ behavior: "smooth" });
-        }
-    }, [])
-
+     const scrollToSaleSection = () => {
+       if (saleSectionRef.current) {
+         saleSectionRef.current.scrollIntoView({ behavior: "smooth" });
+       }
+     }
 
     return(
         <main>
