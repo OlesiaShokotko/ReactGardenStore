@@ -9,12 +9,9 @@ export default function Footer() {
       <div className={s.content_wrapper}>
         <section className={s.left_wrapper}>
           <h2 className={s.footer_title}>Contact</h2>
-            <a
-              href="tel:+499999999999"
-              style={{ textDecoration: "none" }}
-            >
-              <p className={s.contact}>+49 999 999 99 99</p>
-            </a>
+          <a href="tel:+499999999999" style={{ textDecoration: "none" }}>
+            <p className={s.contact}>+49 999 999 99 99</p>
+          </a>
           <div className={s.footer_icons}>
             <a
               className={s.icon_link}
@@ -25,7 +22,7 @@ export default function Footer() {
                 <p>Instagram</p>
               </div>
             </a>
-            <a href="https://wa.me/4915143215184">
+            <a href="https://web.whatsapp.com/">
               <div className={s.icon_wrapper}>
                 <WhatsappIcon className={s.icon} />
                 <p>WhatsApp</p>

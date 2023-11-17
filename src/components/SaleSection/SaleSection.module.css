@@ -21,15 +21,14 @@
 @media screen and (max-width: 1020px) {
   .products_wrapper {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: max-content;
     justify-content: center;
     align-items: center;
   }
 }
 
-@media screen and (max-width: 680px) {
+/* @media screen and (max-width: 680px) {
   .products_wrapper {
     grid-template-columns: 1fr;
     gap: 0;
   }
-}
+} */

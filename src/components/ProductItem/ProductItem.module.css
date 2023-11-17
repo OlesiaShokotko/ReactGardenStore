@@ -97,7 +97,8 @@
 @media screen and (max-width: 700px) {
   .container {
     width: 35vw;
-    height: max-content;
+    height: fit-content;
+    align-self: flex-start;
   }
 
   .product_img {

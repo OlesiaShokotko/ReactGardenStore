@@ -35,6 +35,7 @@ export default function FormElem({
     return result;
   }, []);
 
+
   const totalProductsPrice = cartProducts.reduce(
     (sum, elem) =>
       sum +

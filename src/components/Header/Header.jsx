@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import s from "./Header.module.css";
 import { useSelector } from "react-redux";
 import { MdClear, MdMenu } from "react-icons/md";
@@ -9,7 +9,6 @@ import { useRef, useState } from "react";
 import { useClickOutside } from "../../hooks/useClickOutside";
 
 export default function Header() {
-  
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
   const shoppingCart = useSelector((store) => store.shoppingCart);
